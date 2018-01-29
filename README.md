@@ -1,4 +1,4 @@
-# RayVeal
+# Learning Link
 This extension will retrieve the URL from a page and customize the URL with your own Google Tracking Code.
 
 ## Installation
