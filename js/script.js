@@ -9,31 +9,35 @@ function getCurrentTabUrl(callback) {
     var url = tab.url;
     
     var copyBtn, copyText, newLink;
-    console.log(newLink);
-
-    newLink = url.split("?")[0] + '?trk=insiders_pilot_learning';
+    copyText = document.querySelector('#copyTxt');
 
     copyBtn = document.querySelector('#copybtn');
+
     copyBtn.addEventListener('click', function(event) {
-      copyText = document.querySelector('#copyTxt');
-      var oldValue = copyText.value; 
+      var oldValue = copyText.value;
+      if (oldValue === '') {
+        newLink = url.split("?")[0] + '?trk=insiders_pilot_learning';
+      } else {
+        newLink = url.split("?")[0] + oldValue;
+      }
+
       copyText.value = newLink;
       copyText.select();
       document.execCommand('copy');
       copyText.value = oldValue;
     });
+
     callback(newLink);
   });
 }
 
-function changeBackgroundColor(color) {
-  var script = 'document.body.style.backgroundColor="' + color + '";';
+function changeInputURL(currURL) {
   chrome.tabs.executeScript({
     code: script
   });
 }
 
-function getSavedBackgroundColor(url, callback) {
+function getSavedInputURL(url, callback) {
   chrome.storage.sync.get(url, (items) => {
     callback(chrome.runtime.lastError ? null : items[url]);
   });
@@ -49,9 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((url) => {
     var dropdown = document.getElementById('dropdown');
 
-    getSavedBackgroundColor(url, (savedColor) => {
+    getSavedInputURL(url, (savedColor) => {
       if (savedColor) {
-        changeBackgroundColor(savedColor);
+        changeInputURL(savedColor);
         dropdown.value = savedColor;
       }
     });
