@@ -31,38 +31,31 @@ function getCurrentTabUrl(callback) {
   });
 }
 
-function changeInputURL(currURL) {
-  chrome.tabs.executeScript({
-    code: script
-  });
-}
-
-function getSavedInputURL(url, callback) {
+function getCurrTRKCode(url, callback) {
   chrome.storage.sync.get(url, (items) => {
     callback(chrome.runtime.lastError ? null : items[url]);
   });
 }
 
-function saveBackgroundColor(url, color) {
+function saveCurrTRKCode(url, trkCode) {
   var items = {};
-  items[url] = color;
+  items[url] = trkCode;
   chrome.storage.sync.set(items);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((url) => {
-    var dropdown = document.getElementById('dropdown');
+    var copyText = document.querySelector('#copyTxt');
 
-    getSavedInputURL(url, (savedColor) => {
-      if (savedColor) {
-        changeInputURL(savedColor);
-        dropdown.value = savedColor;
+    getCurrTRKCode(url, (currTRK) => {
+      if (currTRK) {
+        copyText.value = currTRK;
       }
     });
 
-    dropdown.addEventListener('change', () => {
-      changeBackgroundColor(dropdown.value);
-      saveBackgroundColor(url, dropdown.value);
+    copyText.addEventListener('change', () => {
+      console.log(copyText.value);
+      saveCurrTRKCode(url, copyText.value);
     });
   });
 });
