@@ -1,0 +1,23 @@
+{
+  "name": "Learning Link",
+  "description" : "This extension extracts the link from a page and makes it easier to work with a custom tracking code",
+  "version": "1.0",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "linking.html",
+    "default_icon": "icon-lil.png"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      },
+      "description": "Opens hello.html"
+    }
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}
