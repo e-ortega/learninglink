@@ -7,7 +7,7 @@ function getCurrentTabUrl(callback) {
   chrome.tabs.query(queryInfo, (tabs) => {
     var tab = tabs[0];
     var url = tab.url;
-    
+
     var copyBtn, copyText, newLink;
     copyText = document.querySelector('#copyTxt');
 
@@ -46,7 +46,14 @@ function saveCurrTRKCode(url, trkCode) {
 document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((url) => {
     var copyText = document.querySelector('#copyTxt');
+    
+    chrome.tabs.executeScript(null, {
+        "code": "'Ember: ' + document.body.innerHTML.match(/lyndaCourse:([0-9]*)/i)[1] + '<br>Canonical: ' + document.querySelector('link[rel=\"canonical\"]').href.match(/([0-9]+)/i)[1] + '<br>Player: ' + (document.getElementsByTagName('video').length>0 ? document.querySelector('video[class=\"player\"]').src.match(/courses\\/([0-9]*)/i)[1] : \"none\");"
+    }, function (result) {
+        document.getElementById('info').innerHTML = result;
+    });
 
+    //chrome.tabs.executeScript(null, {file: "js/scott.js"});
     getCurrTRKCode(url, (currTRK) => {
       if (currTRK) {
         copyText.value = currTRK;
