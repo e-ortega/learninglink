@@ -13,8 +13,7 @@ This extension will retrieve the URL from a page and customize the URL with your
 ![ScreenShot](images/screenshots/LinkOnExtensionPage.png?raw=true "the Learning Link extension")
 
 ## Using the Extension
-
-1. Click on the LinkedIn Learning Icon
+1. Click on the LinkedIn Learning Icon (or hit CTRL-SHIFT-F)
 1. Type in your tracking code in the box
 1. Hit the `COPY` button
 ![ScreenShot](images/screenshots/ExampleUseOnPage.png?raw=true "the Learning Link extension")

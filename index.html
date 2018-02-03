@@ -2,26 +2,42 @@
 <html>
   <head>
     <title>LinkedIn Link</title>
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <style>
-        body {
-          min-width: 400px;
-          width: 100%;
-        }
-      </style>
-  </head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+      body {
+        min-width: 400px;
+        width: 100%;
+      }
+    </style>
+    <script defer src="js/fontawesome-all.min.js"></script>
+</head>
 
   <body>
   <div class="container my-4">
     <h5>Copy URL with Tracking Code</h5>
     <p class="small">Type in your tracking code below and hit the copy button. This extension removes any query parameters and replaces them with what's in the input field below.</p>
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="?trk=insiders_pilot_learning" id="copyTxt">
+    <div class="input-group form-horizontal">
+      <div class="input-group-prepend">
+        <span class="input-group-text">TRK Code:</span>
+      </div>
+      <input type="text" class="form-control" placeholder="?trk=insiders_pilot_learning" id="trkTxt">
       <div class="input-group-append">
-        <button class="btn btn-primary" id="copybtn" type="button">COPY</button>
+        <button class="btn btn-primary" id="trkBtn" type="button">
+          <i class="far fa-copy"></i>
+        </button>
       </div>
     </div>
-<div id='info'></div>
+    <div class="input-group mt-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Course ID:</span>
+      </div>
+      <input type="text" class="form-control" id="courseIdText">
+      <div class="input-group-append">
+        <button class="btn btn-primary" id="courseIdBtn" type="button">
+          <i class="far fa-copy"></i>
+        </button>
+      </div>
+    </div>
   <script src="js/jquery-3.2.1.slim.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
